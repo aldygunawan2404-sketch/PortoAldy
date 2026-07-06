@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Creative Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan background polos terang yang bersih */
+        body {
+            background-color: #f8f9fa;
+        }
+        .portfolio-card {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- NAVBAR -->
+    <nav class="p-6 flex justify-between items-center bg-gray-200 shadow-sm sticky top-0 z-50">
+        <h1 class="text-xl font-bold tracking-tighter">AWAN.LAB</h1>
+        <div class="space-x-6 text-sm font-medium">
+            <a href="index.html" class="px-4 py-2 bg-black text-white rounded-full">Home</a>
+            <a href="about.html" class="px-4 py-2 bg-black text-white rounded-full">About</a>
+            <a href="contact.html" class="px-4 py-2 bg-black text-white rounded-full">Contact</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-6 py-16 w-full flex-grow flex flex-col justify-center">
+        <h1 class="text-4xl font-black mb-12 text-[#0a1f2c] text-center tracking-tight">Portfolio</h1>
+
+        <!-- GRID BERDAMPINGAN / SEBELAHAN -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto w-full">
+
+            <!-- KARTU 1: DOKUMENTASI (Kiri) -->
+            <div class="flex flex-col items-center w-full">
+                <!-- Gambar Dibungkus Tag Link ke Dokumentasi -->
+                <a href="dokumentasi.html" class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-md portfolio-card mb-4 block group">
+                    <img src="assets/dokumentasi/Dokumentasi.png" alt="Cover Dokumentasi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </a>
+                <!-- Judul Center (Sudah di-Unlink / Teks Biasa) -->
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-gray-900">
+                        Momen Terpotret 
+                    </h2>
+                    <p class="text-gray-500 text-sm mt-1">Kumpulan fotografi, cerita project, dan balik layar.</p>
+                </div>
+            </div>
+
+            <!-- KARTU 2: DESAIN (Kanan) -->
+            <div class="flex flex-col items-center w-full">
+                <!-- Gambar Dibungkus Tag Link ke Desain -->
+                <a href="desain.html" class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-md portfolio-card mb-4 block group">
+                    <img src="assets/desain/Desain.png" alt="Cover Desain" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </a>
+                <!-- Judul Center (Sudah di-Unlink / Teks Biasa) -->
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-gray-900">
+                        Desain Tercetak
+                    </h2>
+                    <p class="text-gray-500 text-sm mt-1">Hasil pengerjaan desain publikasi grafis dan cetak.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-200 text-black text-center py-6 w-full">
+        © 2026 Creative Lab. All rights reserved.
+    </footer>
+
+</body>
+</html>

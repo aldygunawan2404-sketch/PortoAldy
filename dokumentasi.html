@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Foto - Creative Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card-container {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        }
+      #main-photo { transition: opacity 0.3s ease-in-out; }  
+      /* Dot standar (bulat) */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background-color: #d1d5db; /* Abu-abu terang */
+    transition: all 0.3s ease;
+}
+
+/* Dot aktif (lonjong/pill) */
+.dot.active {
+    width: 24px; /* Lebih lebar agar lonjong */
+    background-color: #000000; /* Hitam */
+}
+    </style>
+</head>
+  <nav class="p-6 flex justify-between items-center bg-gray-200 shadow-sm sticky top-0 z-50">
+        <h1 class="text-xl font-bold tracking-tighter">AWAN.LAB</h1>
+        <div class="space-x-6 text-sm font-medium">
+             <a href="index.html" class="px-4 py-2 bg-black text-white rounded-full">Home</a>
+            <a href="about.html" class="px-4 py-2 bg-black text-white rounded-full">About</a>
+            <a href="contact.html" class="px-4 py-2 bg-black text-white rounded-full">Contact</a>
+            <a href="Portofolio.html" class="px-4 py-2 bg-black text-white rounded-full">Portfolio</a>
+        </div>
+    </nav>
+<body class="text-gray-900 font-sans">
+
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <h1 class="text-2xl font-black mb-8 text-[#0a1f2c]">Dokumentasi Foto</h1>
+
+        <div class="bg-white rounded-3xl p-8 card-container mb-12">
+            
+            <div class="relative group">
+              <div class="overflow-hidden rounded-2xl aspect-[16/9] bg-[#f0f0f0] flex items-center justify-center shadow-lg">
+    <img id="main-photo" 
+         src="assets/dokumentasi/foto/DSCF3340.JPG" 
+         alt="Dokumentasi" 
+         class="max-w-full max-h-full object-contain rounded-xl shadow-md transition-all duration-300">
+         </div>
+
+               <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black transition shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black transition shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+
+          <div class="mt-6">
+                <p id="photo-caption" class="text-gray-500 text-sm italic mb-6 text-left">Loading caption...</p>
+                
+                <div id="dots-wrapper" class="flex justify-center gap-2"></div>
+            </div>
+
+        </div>
+
+   <script>
+        // --- KONFIGURASI FOTO ---
+        // Kamu tinggal tambah/kurangi daftar di bawah ini
+        const gallery = [
+            { src: 'assets/dokumentasi/foto/DSCF3340.JPG', desc: 'Lomba Balap Karung Anak Anak' },
+            { src: 'assets/dokumentasi/foto/DSCF3511.JPG', desc: 'Lomba Makan Kerupuk Ibu Ibu PKK' },
+            { src: 'assets/dokumentasi/foto/DSCF3561.JPG', desc: 'Lomba Balap Karung Ibu Ibu PKK' },
+            { src: 'assets/dokumentasi/foto/DSCF3571.JPG', desc: 'Lomba Voli Pemuda' },
+            { src: 'assets/dokumentasi/foto/P6071962.JPG', desc: 'Training of Trainer Penilaian Karbon PKN STAN' },
+            { src: 'assets/dokumentasi/foto/IMG_8295.JPG', desc: 'Bukit Panguk Kediwung Bantul Yogyakarta' },
+            { src: 'assets/dokumentasi/foto/IMG_4173.JPG', desc: 'Masjid As sidiq PKN STAN' },
+            { src: 'assets/dokumentasi/foto/IMG_3586.JPG', desc: 'Festival Balon Udara Kabupaten Wonosobo' },
+            { src: 'assets/dokumentasi/foto/IMG_E4281.JPG', desc: 'Langit Sore dari Kompleks Perumahan PJMI' },
+            { src: 'assets/dokumentasi/foto/IMG_7396.JPG', desc: 'Pantai Klayar Pacitan Jawa Timur' }
+        ];
+
+        let currentIndex = 0;
+
+        // Inisialisasi Tampilan
+        const photoEl = document.getElementById('main-photo');
+        const captionEl = document.getElementById('photo-caption');
+        const dotsEl = document.getElementById('dots-wrapper');
+
+       // Fungsi buat dots awal
+function initDots() {
+    dotsEl.innerHTML = '';
+    gallery.forEach((_, i) => {
+        const dot = document.createElement('div');
+        // Memberikan class 'dot' standar
+        dot.className = 'dot'; 
+        dot.id = `dot-${i}`;
+        dotsEl.appendChild(dot);
+    });
+}
+
+// Fungsi update tampilan saat slide digeser
+function updateDisplay() {
+    photoEl.style.opacity = 0;
+    
+    setTimeout(() => {
+        photoEl.src = gallery[currentIndex].src;
+        captionEl.innerText = gallery[currentIndex].desc;
+
+        // Update class pada dots
+        gallery.forEach((_, i) => {
+            const d = document.getElementById(`dot-${i}`);
+            if(i === currentIndex) {
+                // Tambahkan class 'active' untuk yang terpilih
+                d.className = 'dot active';
+            } else {
+                // Kembalikan ke class 'dot' biasa
+                d.className = 'dot';
+            }
+        });
+        
+        photoEl.style.opacity = 1;
+    }, 200);
+}
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            // Looping: kalau sudah di akhir balik ke awal, kalau di awal balik ke akhir
+            if (currentIndex >= gallery.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = gallery.length - 1;
+            updateDisplay();
+        }
+
+        // Jalankan saat pertama load
+        initDots();
+        updateDisplay();
+    </script>
+
+<div class="mt-12 px-4 max-w-5xl mx-auto mb-20">
+  <h2 class="text-2xl font-black mb-8 text-[#0a1f2c]">Dokumentasi Video</h2>
+  <div id="cloudinary-video-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    </div>
+</div>
+
+<script>
+  // 1. Ganti dengan Cloud Name dari Dashboard Cloudinary kamu
+  const cloudName = "dgngrewmt"; 
+
+  // 2. Daftar 10 Public ID Video kamu
+  const myVideos = [
+    { id: "Teaser_Pemira_2025_wk10df", title: "Teaser Pemira 2025", desc: "Teaser Pemilihan Raya PKN STAN 2025" },
+    { id: "Video_Recap_edvnfa", title: "Recap First Gathering Pemira 2025", desc: "Video recap First Gathering Panitia Pemira PKN STAN 2025" },
+    { id: "Recap_Fit_n_Proper_Test_hdcms1", title: "Fit and Proper Test Pemira 2025", desc: "Video recap rangkaian Fit and Proper Test Pemira PKN STAN 2025" },
+    { id: "Recap_Pengundian_No_Urut_xva6s2", title: "Pengundian Nomor Urur Pemira 2025", desc: "Video recap pengundian nomor urut peserta Pemira PKN STAN 2025" },
+    { id: "konten_tanya_tanya_n8ei9r", title: "Mengenal Capresma dan Cawapresma BEM PKN STAN 2026", desc: "Mengenal lebih dekat Calon Presma dan Calon Wapresma BEM PKN STAN 2026" },
+    { id: "Recap_keo089", title: "Debat Capresma dan Cawapresma", desc: "Video recap debat Calon Presma dan Calon Wapresma BEM PKN STAN 2026" },
+    { id: "Penetapan_dan_Pelantikan_rrxtnu", title: "Sidang Penetapan dan Pelantikan", desc: "Video recap Sidang Penetapan dan Pelantikan hasil Pemira PKN STAN 2025" },
+    { id: "Kampanye_Sampah_zajgyq", title: "Kampanye Pemilahan Sampah", desc: "Video recap tugas kampanye pemilahan sampah dengan audiens mahasiswa alih program" },
+    { id: "Clip_Ragunan_oidtqs", title: "Berkunjung ke Taman Margasatwa Ragunan", desc: "Berkunjung ke Taman Margasatwa Ragunan bersama dengan teman teman asrama" },
+    { id: "Community_service_nllz0a", title: "Community Service", desc: "Video recap kegiatan Community Service di UPTD SD Negeri Sawah 02" },
+  ];
+
+  const gridElement = document.getElementById('cloudinary-video-grid');
+
+// Fungsi untuk mengubah mode tampilan saat fullscreen
+  function handleZoom(el) {
+    el.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        el.style.objectFit = "contain"; // Mode Full: Ikuti bentuk asli
+      } else {
+        el.style.objectFit = "cover"; // Mode Grid: Potong jadi 16:9
+      }
+    });
+    // Support Safari/iOS
+    el.addEventListener('webkitfullscreenchange', () => {
+      if (document.webkitFullscreenElement) {
+        el.style.objectFit = "contain";
+      } else {
+        el.style.objectFit = "cover";
+      }
+    });
+  }
+
+  myVideos.forEach(vid => {
+    const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_auto/${vid.id}.mp4`;
+    const posterUrl = `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,so_auto/${vid.id}.jpg`;
+
+    gridElement.innerHTML += `
+      <div class="bg-white rounded-2xl shadow-sm p-6 flex flex-col hover:shadow-md transition-shadow duration-300">
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner">
+          <video 
+            class="w-full h-full cursor-pointer" 
+            style="object-fit: cover;"
+            controls
+            playsinline
+            preload="metadata"
+            poster="${posterUrl}"
+            onplay="handleZoom(this)">
+            <source src="${videoUrl}" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="w-full mt-4 text-left">
+          <h3 class="font-bold text-sm text-slate-800">${vid.title}</h3>
+          <p class="text-[10px] text-gray-400 italic font-medium">${vid.desc}</p>
+        </div>
+
+      </div>
+    `;
+  });
+</script>
+
+</section>
+  <footer class="bg-gray-200 text-black text-center py-6 mt-20">
+  © 2026 Creative Lab. All rights reserved.
+</footer>
+
+</body>
+</html>

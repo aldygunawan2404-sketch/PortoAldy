@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Foto - Creative Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card-container {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        }
+        #main-photo { 
+            transition: opacity 0.3s ease-in-out; 
+        }  
+        /* Dot standar (bulat) */
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: #d1d5db; /* Abu-abu terang */
+            transition: all 0.3s ease;
+        }
+
+        /* Dot aktif (lonjong/pill) */
+        .dot.active {
+            width: 24px; /* Lebih lebar agar lonjong */
+            background-color: #000000; /* Hitam */
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans">
+
+    <!-- NAVIGATION -->
+    <nav class="p-6 flex justify-between items-center bg-gray-200 shadow-sm sticky top-0 z-50">
+        <h1 class="text-xl font-bold tracking-tighter">AWAN.LAB</h1>
+        <div class="space-x-6 text-sm font-medium">
+            <a href="index.html" class="px-4 py-2 bg-black text-white rounded-full">Home</a>
+            <a href="about.html" class="px-4 py-2 bg-black text-white rounded-full">About</a>
+            <a href="contact.html" class="px-4 py-2 bg-black text-white rounded-full">Contact</a>
+            <a href="Portofolio.html" class="px-4 py-2 bg-black text-white rounded-full">Portfolio</a>
+
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-4xl mx-auto px-6 py-12 mb-20">
+        <h1 class="text-2xl font-black mb-8 text-[#0a1f2c]">Design Creative</h1>
+
+        <div class="bg-white rounded-3xl p-8 card-container">
+            
+            <div class="relative group">
+                <div class="overflow-hidden rounded-2xl aspect-[16/9] bg-[#f0f0f0] flex items-center justify-center shadow-lg">
+                    <img id="main-photo" 
+                         src="assets/desain/AA MARAMIS.jpg" 
+                         alt="Desain" 
+                         class="max-w-full max-h-full object-contain rounded-xl shadow-md transition-all duration-300">
+                </div>
+
+                <!-- Navigasi Left -->
+                <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black transition shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <!-- Navigasi Right -->
+                <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black transition shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="mt-6">
+                <p id="photo-caption" class="text-gray-500 text-sm italic mb-6 text-left">Loading caption...</p>
+                <div id="dots-wrapper" class="flex justify-center gap-2"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-200 text-black text-center py-6">
+        © 2026 Creative Lab. All rights reserved.
+    </footer>
+
+    <!-- JAVASCRIPT SLIDESHOW FOTO -->
+    <script>
+        // --- KONFIGURASI FOTO ---
+        const gallery = [
+            { src: 'assets/desain/AA MARAMIS.JPG', desc: 'Desain feed Instagram Gedung AA Maramis' },
+            { src: 'assets/desain/bagan pengurus.JPEG', desc: 'Desain feed Instagram Struktur Kepengurusan Organisasi' },
+            { src: 'assets/desain/BOOST.JPG', desc: 'Poster Future Plan 10 tahun kedepan ' },
+            { src: 'assets/desain/Marimutu sinivasan.JPG', desc: 'Desain feed Instagram Kasus Marimutu Sinivasan' },
+            { src: 'assets/desain/Neraca SDA.JPG', desc: 'Visualisasi Neraca SDA hasil Penelitian' },
+            { src: 'assets/desain/Persiapan UAS.JPG', desc: 'Poster Persiapan UAS versi Kesehatan Mental di PKN STAN' },
+            { src: 'assets/desain/Poster.JPG', desc: 'Poster Seminar Manajemen Stres ' },
+            { src: 'assets/desain/HaltePreneur.JPG', desc: 'Desain feen Instagram Haltepreneur Bundaran HI Jakarta' },
+        ];
+
+        let currentIndex = 0;
+
+        const photoEl = document.getElementById('main-photo');
+        const captionEl = document.getElementById('photo-caption');
+        const dotsEl = document.getElementById('dots-wrapper');
+
+        // Fungsi buat dots awal
+        function initDots() {
+            dotsEl.innerHTML = '';
+            gallery.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot'; 
+                dot.id = `dot-${i}`;
+                dotsEl.appendChild(dot);
+            });
+        }
+
+        // Fungsi update tampilan saat slide digeser
+        function updateDisplay() {
+            photoEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                photoEl.src = gallery[currentIndex].src;
+                captionEl.innerText = gallery[currentIndex].desc;
+
+                // Update class pada dots
+                gallery.forEach((_, i) => {
+                    const d = document.getElementById(`dot-${i}`);
+                    if(i === currentIndex) {
+                        d.className = 'dot active';
+                    } else {
+                        d.className = 'dot';
+                    }
+                });
+                
+                photoEl.style.opacity = 1;
+            }, 200);
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            if (currentIndex >= gallery.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = gallery.length - 1;
+            updateDisplay();
+        }
+
+        // Jalankan saat pertama load
+        initDots();
+        updateDisplay();
+    </script>
+
+</body>
+</html>

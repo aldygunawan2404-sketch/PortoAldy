@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Creative Portfolio | Aldy</title>
+ 
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* ===== BACKGROUND + OVERLAY ===== */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-image: url('assets/dokumentasi/foto/IMG_1550.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-card {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR (Konsisten dengan halaman sebelumnya) -->
+    <nav class="p-6 flex justify-between items-center bg-gray-200 shadow-sm sticky top-0 z-50">
+        <h1 class="text-xl font-bold tracking-tighter">AWAN.LAB</h1>
+        <div class="space-x-6 text-sm font-medium">
+            <a href="index.html" class="px-4 py-2 bg-black text-white rounded-full">Home</a>
+            <a href="contact.html" class="px-4 py-2 bg-black text-white rounded-full">Contact</a>
+             <a href="Portofolio.html" class="px-4 py-2 bg-black text-white rounded-full">Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- HEADER (Konsisten dengan halaman sebelumnya) -->
+    <header class="max-w-6xl mx-auto pt-20 px-6 w-full">
+        <h2 class="text-5xl font-bold leading-tight text-white drop-shadow-md">
+            About Me
+        </h2>
+    </header>
+
+    <!-- MAIN CONTENT: PROFILE SECTION -->
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-1 w-full flex flex-col justify-center">
+        
+        <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 profile-card grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            
+            <!-- FOTO PROFESIONAL -->
+            <div class="flex justify-center md:col-span-1">
+                <div class="w-48 h-48 md:w-full md:aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-md">
+                    <!-- Ganti src di bawah ini dengan path foto formal/profesional kamu -->
+                    <img src="assets/Profile/Aldy.png" alt="Aldy Gunawan" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- DESKRIPSI SINGKAT & RINGKASAN PROFIL -->
+            <div class="md:col-span-2 space-y-4 text-left">
+                <div class="border-b border-gray-200 pb-2">
+                    <h3 class="text-3xl font-black text-slate-900 tracking-tight">Aldy Gunawan</h3>
+                    <p class="text-sm font-semibold text-blue-600 uppercase tracking-wider mt-1">Manajemen Aset Publik • PKN STAN</p>
+                </div>
+                
+                <p class="text-gray-700 text-sm md:text-base leading-relaxed font-medium">
+                    Saya adalah mahasiswa semester 6 di Politeknik Keuangan Negara STAN yang mengombinasikan keahlian analisis data keuangan/ekonomi dengan industri kreatif serta <span class="font-bold text-slate-900">digital marketing</span>.
+                </p>
+                
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Berpengalaman kuat dalam memimpin tim lintas fungsi, merancang strategi konten media sosial, produksi visual (fotografi & videografi), hingga manajemen kearsipan data analitis organisasi untuk mengoptimalkan efisiensi operasional kerja.
+                </p>
+
+                <!-- CALL TO ACTION (CTA) -->
+                <div class="pt-4 flex flex-wrap gap-3">
+                    <a href="https://wa.me/6281990795466" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold text-sm rounded-full hover:bg-green-700 shadow-md shadow-green-100 transition-all transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 12.008 0c3.202.001 6.212 1.249 8.477 3.517 2.266 2.268 3.51 5.28 3.51 8.487 0 6.656-5.338 12.006-11.95 12.006-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.48 4.961 1.481 5.428 0 9.845-4.415 9.849-9.841.002-2.628-1.021-5.1-2.883-6.963C16.657 1.968 14.181.944 11.559.944c-5.431 0-9.848 4.417-9.851 9.843-.001 1.77.47 3.5 1.365 5.041l-.989 3.61 3.698-.971zM17.48 14.86c-.322-.161-1.903-.938-2.198-1.046-.296-.107-.512-.161-.727.161-.215.323-.834 1.046-1.022 1.261-.188.215-.376.242-.698.081-1.213-.606-2.015-1.007-2.817-2.386-.215-.369.215-.343.615-1.141.065-.134.033-.252-.017-.353-.05-.1-.43-1.036-.59-1.423-.156-.373-.314-.323-.43-.323h-.368c-.129 0-.34.049-.517.242-.178.194-.678.663-.678 1.617s.694 1.874.791 2.003c.097.129 1.366 2.086 3.308 2.923.462.2.823.319 1.104.408.464.148.887.127 1.22.077.372-.056 1.141-.466 1.301-.916.16-.45.16-.834.113-.916-.047-.08-.172-.128-.495-.29z"/>
+                        </svg>
+                        Hubungi via WhatsApp
+                    </a>
+                    
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aldygunawan2404@gmail.com"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white font-bold text-sm rounded-full hover:bg-black shadow-md transition-all transform hover:-translate-y-0.5">
+                    <svg class="w-4 h-4 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L22 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Ajukan Kolaborasi (Email)
+                </a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER (Konsisten dengan halaman sebelumnya) -->
+    <footer class="bg-gray-200 text-black text-center py-6 w-full mt-auto">
+        © 2026 Creative Lab. All rights reserved.
+    </footer>
+
+</body>
+</html>

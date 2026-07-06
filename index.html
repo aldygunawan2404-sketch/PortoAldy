@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio | Aldy</title>
+ 
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* ===== BACKGROUND + OVERLAY ===== */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-image: url('assets/dokumentasi/foto/IMG_1550.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .card-slide.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="p-6 flex justify-between items-center bg-gray-200 shadow-sm sticky top-0 z-50">
+        <h1 class="text-xl font-bold tracking-tighter">AWAN.LAB</h1>
+        <div class="space-x-6 text-sm font-medium">
+            <a href="about.html" class="px-4 py-2 bg-black text-white rounded-full">About</a>
+            <a href="contact.html" class="px-4 py-2 bg-black text-white rounded-full">Contact</a>
+            <a href="Portofolio.html" class="px-4 py-2 bg-black text-white rounded-full">Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="max-w-6xl mx-auto pt-20 px-6 w-full">
+        <h2 class="text-5xl font-bold leading-tight text-white drop-shadow-md">
+            Creative Documentarian & Visual Designer
+        </h2>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-6xl mx-auto px-6 py-12 flex-1 w-full space-y-20">
+
+        <!-- SECTION 1: MOMEN TERPOTRET (16:9 / Aspect Video) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <!-- SLIDESHOW -->
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-gray-200 shadow-md">
+                <div class="card-slider h-full w-full">
+                    <img src="assets/dokumentasi/foto/DSCF3340.JPG" class="card-slide active">
+                    <img src="assets/dokumentasi/foto/DSCF3511.JPG" class="card-slide">
+                    <img src="assets/dokumentasi/foto/DSCF3561.JPG" class="card-slide">
+                    <img src="assets/dokumentasi/foto/DSCF3571.JPG" class="card-slide">
+                    <img src="assets/dokumentasi/foto/P6071962.JPG" class="card-slide">
+                </div>
+            </div>
+
+            <!-- TEXT (Tag <a> telah dihapus/unlink) -->
+            <div class="flex justify-between items-center">
+                <div class="bg-white/25 backdrop-blur-md rounded-xl p-6 shadow-lg w-full">
+                    <h3 class="text-2xl font-bold text-gray-900">
+                        Momen Terpotret
+                    </h3>
+                    <p class="text-gray-900 mt-2 font-medium">
+                        Melihat proses di balik layar, fotografi, dan cerita setiap project.
+                    </p>
+                </div>
+                <span class="text-2xl text-white ml-4">&rarr;</span>
+            </div>
+        </div>
+
+        <!-- SECTION 2: DESAIN TERCETAK (1:1 / Aspect Square) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <!-- SLIDESHOW -->
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-md">
+                <div class="card-slider h-full w-full">
+                    <img src="assets/desain/AA MARAMIS.jpg" class="card-slide active">
+                    <img src="assets/desain/Haltepreneur.jpg" class="card-slide">
+                    <img src="assets/desain/Marimutu sinivasan.jpg" class="card-slide">
+                    <img src="assets/desain/Neraca SDA.jpg" class="card-slide">
+                </div>
+            </div>
+
+            <!-- TEXT (Tag <a> telah dihapus/unlink) -->
+            <div class="flex justify-between items-center">
+                <div class="bg-white/25 backdrop-blur-md rounded-xl p-6 shadow-lg w-full">
+                    <h3 class="text-2xl font-bold text-gray-900">
+                        Desain Tercetak
+                    </h3>
+                    <p class="text-gray-900 mt-2 font-medium">
+                        Melihat hasil pengerjaan dari setiap project yang telah diselesaikan.
+                    </p>
+                </div>
+                <span class="text-2xl text-white ml-4">&rarr;</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-200 text-black text-center py-6">
+        © 2026 Creative Lab. All rights reserved.
+    </footer>
+
+    <!-- JAVASCRIPT SLIDESHOW -->
+    <script>
+        const sliders = document.querySelectorAll(".card-slider");
+
+        sliders.forEach((slider) => {
+            let slides = slider.querySelectorAll(".card-slide");
+            let index = 0;
+
+            if(slides.length > 0) {
+                slides[0].classList.add("active");
+
+                setInterval(() => {
+                    slides[index].classList.remove("active");
+                    index = (index + 1) % slides.length;
+                    slides[index].classList.add("active");
+                }, 3000);
+            }
+        });
+    </script>
+     
+</body>
+</html>
